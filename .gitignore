@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.pyd
+
+# Virtualenv
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# PyCharm
+.idea/
+
+# VSCode (jeśli ktoś pracuje też w VSCode)
+.vscode/
+
+# Testy i logi
+*.log
+coverage.*
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Pliki konfiguracyjne lub tymczasowe
+*.db
+*.sqlite3
+*.swp
+*.swo
+*.bak
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# MyPy, Pylint, itp.
+.mypy_cache/
+.pyre/
+.pytype/
+
+# dotenv
+.env
+.env.*
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
