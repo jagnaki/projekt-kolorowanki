@@ -1,2 +1,2 @@
-# GO_projekt
-Projekt z przedmiotu Geometria obliczeniowa
+# Projekt kolorowanki
+## Projekt z przedmiotu Geometria obliczeniowa
