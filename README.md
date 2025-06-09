@@ -47,13 +47,6 @@ Uruchomienie bez argumentów spowoduje włączenie trybu kolorowanki.
    - `+` - zwiększa gęstość siatki triangulacji
    - `-` - zmniejsza gęstość siatki triangulacji
    - `ESC` - zamyka aplikację
-
-## Tryb wiersza poleceń
-
-Aplikacja obsługuje również tryb wiersza poleceń do przetwarzania pojedynczych obrazów:
-
-```
-python main.py ścieżka_do_obrazu [opcje]
 ```
 
 Opcje:
