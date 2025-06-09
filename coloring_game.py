@@ -24,6 +24,10 @@ class ColoringGame:
         self.triangulator.n_contour_points = 30  # Liczba punktów na konturze
         self.triangulator.interior_density = 8  # Gęstość punktów wewnętrznych
 
+        # Standardowy rozmiar okna dla wszystkich obrazów
+        self.window_width = 800
+        self.window_height = 600
+
         # Zakresy parametrów triangulacji dla suwaków kontrolnych
         self.min_contour_points = 10  # Minimalna liczba punktów na konturze
         self.max_contour_points = 100  # Maksymalna liczba punktów na konturze
@@ -231,6 +235,17 @@ class ColoringGame:
 
         return self.image_selected
 
+    def display_main_window(self):
+        """
+        Wyświetla obraz w głównym oknie z zachowaniem stałego rozmiaru okna.
+        """
+        # Upewnij się, że okno ma odpowiednie właściwości
+        cv2.namedWindow(self.main_window, cv2.WINDOW_NORMAL)
+        # Ustaw stały rozmiar okna
+        cv2.resizeWindow(self.main_window, self.window_width, self.window_height)
+        # Wyświetl obraz
+        cv2.imshow(self.main_window, self.display_image)
+
     def load_image(self, image_path):
         """
         Wczytuje obraz z pliku i tworzy triangulację.
@@ -246,6 +261,9 @@ class ColoringGame:
         if self.original_image is None:
             print(f"Nie można wczytać obrazu: {image_path}")
             return False
+
+        # Zmień rozmiar obrazu do standardowego rozmiaru okna
+        self.original_image = cv2.resize(self.original_image, (self.window_width, self.window_height))
 
         # Przetwórz obraz i utwórz triangulację
         self.process_image()
@@ -464,7 +482,7 @@ class ColoringGame:
                     # Przetwórz obraz ponownie z nowymi parametrami
                     self.process_image()
                     # Wyświetl zaktualizowany obraz
-                    cv2.imshow(self.main_window, self.display_image)
+                    self.display_main_window()
 
             elif event == cv2.EVENT_MOUSEMOVE:  # Ruch myszy
                 # Aktualizuj pozycję suwaka podczas przeciągania
@@ -569,7 +587,7 @@ class ColoringGame:
                     self.fill_triangle(self.display_image, triangle, self.current_color)
 
                     # Zaktualizuj wyświetlany obraz
-                    cv2.imshow(self.main_window, self.display_image)
+                    self.display_main_window()
                     break  # Przerwij po znalezieniu pierwszego pasującego trójkąta
 
     def run(self):
@@ -591,8 +609,8 @@ class ColoringGame:
         # Utwórz okno kontroli gęstości siatki
         self.create_density_control_window()
 
-        # Utwórz główne okno i wyświetl obraz z triangulacją
-        cv2.imshow(self.main_window, self.display_image)
+        # Wyświetl obraz z triangulacją w głównym oknie
+        self.display_main_window()
         # Podłącz obsługę kliknięć myszy do głównego okna
         cv2.setMouseCallback(self.main_window, self.handle_click)
 
@@ -618,7 +636,7 @@ class ColoringGame:
                     self.display_image, self.triangles, self.triangulator.triangle_color)
                 # Wyczyść słownik kolorów
                 self.triangle_colors = {}
-                cv2.imshow(self.main_window, self.display_image)
+                self.display_main_window()
                 print("Kolorowanie zostało zresetowane")
 
             elif key == ord('s') or key == ord('S'):  # Zapisz wynik
@@ -645,7 +663,7 @@ class ColoringGame:
 
                 # Przetwórz obraz ponownie
                 self.process_image()
-                cv2.imshow(self.main_window, self.display_image)
+                self.display_main_window()
 
                 # Zaktualizuj okno kontroli jeśli jest widoczne
                 if density_window_visible:
@@ -661,7 +679,7 @@ class ColoringGame:
 
                 # Przetwórz obraz ponownie
                 self.process_image()
-                cv2.imshow(self.main_window, self.display_image)
+                self.display_main_window()
 
                 # Zaktualizuj okno kontroli jeśli jest widoczne
                 if density_window_visible:
