@@ -48,9 +48,3 @@ Uruchomienie bez argumentów spowoduje włączenie trybu kolorowanki.
    - `-` - zmniejsza gęstość siatki triangulacji
    - `ESC` - zamyka aplikację
 ```
-
-Opcje:
-- `--points N` - liczba punktów na konturze (domyślnie 25)
-- `--density N` - gęstość punktów wewnętrznych (domyślnie 8)
-- `--output PLIK` - ścieżka do zapisu wyniku
-- `--no-display` - nie wyświetlaj wyników
